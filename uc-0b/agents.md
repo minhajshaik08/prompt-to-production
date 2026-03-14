@@ -1,18 +1,10 @@
-# agents.md
-# INSTRUCTIONS: Generate a draft using your RICE prompt, then manually refine this file.
-# Delete these comments before committing.
+# Policy Summarization Agent Rules
 
-role: >
-  [FILL IN: Who is this agent? What is its operational boundary?]
-
-intent: >
-  [FILL IN: What does a correct output look like — make it verifiable]
-
-context: >
-  [FILL IN: What information is the agent allowed to use? State exclusions explicitly.]
-
-enforcement:
-  - "[FILL IN: Specific testable rule 1]"
-  - "[FILL IN: Specific testable rule 2]"
-  - "[FILL IN: Specific testable rule 3]"
-  - "[FILL IN: Refusal condition — when should the system refuse rather than guess?]"
+1. Every numbered clause must appear in the final summary.
+2. Multi-condition obligations must preserve all conditions.
+3. Conditions must never be silently removed.
+4. No external knowledge may be added.
+5. If summarization risks meaning loss:
+   - Quote the clause verbatim
+   - Add a flag explaining why.
+6. Clause references (e.g., 2.3, 5.2) must remain visible in the summary.

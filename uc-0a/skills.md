@@ -1,16 +1,38 @@
-# skills.md
-# INSTRUCTIONS: Generate a draft by prompting AI, then manually refine this file.
-# Delete these comments before committing.
+# Skills
 
-skills:
-  - name: [skill_name]
-    description: [One sentence — what does this skill do?]
-    input: [What does it receive? Type and format.]
-    output: [What does it return? Type and format.]
-    error_handling: [What does it do when input is invalid or ambiguous?]
+## classify_complaint
 
-  - name: [second_skill_name]
-    description: [One sentence]
-    input: [Type and format]
-    output: [Type and format]
-    error_handling: [What does it do when input is invalid or ambiguous?]
+Input: One complaint description.
+
+Output:
+- category
+- priority
+- reason
+- flag
+
+Rules:
+- Category must match one of the allowed schema values exactly.
+- Priority is set to Urgent if severity keywords appear:
+  injury, child, school, hospital, ambulance, fire, hazard, fell, collapse.
+- Reason must reference words from the description.
+- If category cannot be confidently determined → flag = NEEDS_REVIEW.
+
+---
+
+## batch_classify
+
+Reads an input CSV file containing complaint descriptions.
+
+Steps:
+1. Load CSV file.
+2. For each row call `classify_complaint`.
+3. Collect:
+   - category
+   - priority
+   - reason
+   - flag
+4. Write results to output CSV.
+
+Output file format:
+
+description | category | priority | reason | flag
